@@ -16,13 +16,10 @@ def word_count(filename):
 
     with open(filename) as text:
         for line in text:
-            line = line.strip(' ').lower().split(' ')
+            line = line.strip().lower().split(' ')
 
             for i, word in enumerate(line):
-                if word[0] in punctuation:
-                    line[i] = word[1:]
-                if word[-1] in punctuation:
-                    line[i] = word[:-1]
+                line[i] = word.strip(punctuation)
 
             for word in line:
                 word_counts[word] = word_counts.get(word, 0) + 1
